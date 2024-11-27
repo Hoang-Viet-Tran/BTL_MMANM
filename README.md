@@ -68,4 +68,20 @@ Xác nhận SAML (SAML assertions): được tạo ra và sử dụng để xác
     </saml:Assertion>
 </samlp:Response>
 
--
+2. OpenID Connect (OIDC): Thay vì dùng SAML Assertions, OIDC dùng Access Token và ID Token để trao đổi giữa IdP với SP
+- Access Token dùng để chứng minh quyền truy cập vào các tài nguyên được bảo vệ
+- ID Token chứa thông tin và cung cấp thông tin về người dùng dưới dạng JSON Web Token (JWT):
+{
+ "iss": "https://my-domain.auth0.com",
+ "sub": "auth0|123456",
+ "aud": "1234abcdef",
+ "exp": 1311281970,
+ "iat": 1311280970,
+ "name": "Jane Doe",
+ "given_name": "Jane",
+ "family_name": "Doe"
+}
+3. CAS: cho phép đăng nhập chỉ một lần vào hệ thống và sử dụng thông tin đó để truy cập nhiều ứng dụng khác nhau
+  - Ticket Granting Ticket (TGT): được lưu trữ trong cookie TGC, thể hiện phiên SSO cho người dùng
+  - Service Ticket (ST): được truyền dưới dạng tham số GET trong url- đại diện cho quyền truy cập được cấp bởi máy chủ CAS đến ứng dụng cụ thể.
+4. JOSSO: là giải pháp mã nguồn mở dựa trên Java Enterprise Edition (EE) và chuẩn SAML
